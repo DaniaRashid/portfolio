@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ava Miller | Designer & Developer Portfolio</title>
+    
+    <style>
+        /* CSS Variables for easy theme management */
+        :root {
+            --color-primary: #4f46e5;      /* Indigo 600 */
+            --color-secondary: #1e293b;    /* Slate 800 */
+            --color-background: #0f172a;   /* Slate 900 */
+            --color-text-light: #f1f5f9;   /* Slate 100 */
+        }
+
+        /* 1. Global Styles and Typography */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Using a common, safe font stack since Inter is not guaranteed without external link */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* Utility Classes */
+        .max-w-7xl { max-width: 1280px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .p-8 { padding: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        
+        /* 2. Header and Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(30, 41, 59, 0.95); /* var(--color-secondary) with opacity */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px; /* h-16 */
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .logo {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: none; /* hidden by default */
+        }
+
+        .nav-links a {
+            display: inline-block;
+            padding: 0.5rem 0.75rem; /* px-3 py-2 */
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: background-color 0.15s ease-in-out;
+            margin-left: 1rem; /* space-x-4 equivalent */
+        }
+
+        .nav-links a:hover {
+            background-color: var(--color-primary);
+            opacity: 0.8;
+        }
+
+        /* Desktop/Tablet visibility for navigation */
+        @media (min-width: 768px) { /* md:block */
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+
+        /* 3. Home Section (Hero) */
+        .home-section {
+            min-height: calc(100vh - 4rem); /* Full viewport minus header height */
+            padding-top: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid rgba(79, 70, 229, 0.2); /* border-primary/20 */
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-card {
+            max-width: 48rem; /* max-w-4xl */
+            padding: 2rem;
+            background-color: rgba(30, 41, 59, 0.5); /* bg-secondary/50 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl */
+        }
+
+        .profile-image-wrapper {
+            width: 8rem; /* w-32 */
+            height: 8rem; /* h-32 */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 50%; /* rounded-full */
+            overflow: hidden;
+            border: 4px solid var(--color-primary);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-title {
+            font-size: 3.75rem; /* text-6xl */
+            font-weight: 800; /* font-extrabold */
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.25; /* leading-tight */
+        }
+
+        .hero-title .primary-text {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem; /* text-2xl */
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            font-weight: 300; /* font-light */
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem; /* px-8 py-3 */
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            border-radius: 9999px; /* rounded-full */
+            background-color: var(--color-primary);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-xl */
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: rgba(79, 70, 229, 0.8); /* primary/80 */
+            transform: scale(1.05);
+        }
+
+        /* New Contact Section Styling */
+        .contact-info {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .contact-info a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.15s ease-in-out;
+            margin: 0 0.5rem;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* 4. Skills Section */
+        .skills-section {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+        }
+
+        .section-title {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 700; /* font-bold */
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) { /* sm:grid-cols-2 */
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg:grid-cols-3 */
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .skill-card {
+            background-color: var(--color-secondary);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.4); /* border-primary/40 */
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .skill-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .skill-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .skill-description {
+            color: rgba(241, 245, 249, 0.7); /* text-text-light/70 */
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: disc;
+            list-style-position: inside;
+            color: rgba(241, 245, 249, 0.8); /* text-text-light/80 */
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.25rem; /* space-y-1 */
+        }
+
+        /* 5. Footer */
+        .footer {
+            background-color: var(--color-secondary);
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(79, 70, 229, 0.3); /* border-primary/30 */
+        }
+
+        .footer p {
+            font-size: 0.875rem; /* text-sm */
+            color: rgba(241, 245, 249, 0.7); /* text-text-light/70 */
+            margin: 0;
+        }
+
+        /* General Content Alignment */
+        .main-content {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Horizontal Navigation Bar -->
+    <header class="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="nav-container">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <span class="logo">Ava Miller</span>
+                </div>
+                <!-- Navigation Links (Horizontal) -->
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#skills">Skills</a>
+                </div>
+                <!-- Mobile Menu Button - Placeholder for mobile functionality -->
+                <div class="mobile-menu-button">
+                    <button style="background:none; border:none; color:var(--color-text-light); padding:0.5rem; border-radius:0.375rem; cursor:pointer;">
+                        <!-- Simple three-line icon -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+        <!-- 1. Home Section (Hero) -->
+        <section id="home" class="home-section">
+            <div class="hero-card">
+                <div class="profile-image-wrapper">
+                    <!-- Placeholder Profile Image -->
+                    <img src="https://placehold.co/128x128/4f46e5/ffffff?text=AM" alt="Profile Picture of Ava Miller">
+                </div>
+                <h1 class="hero-title">Hello, I'm <span class="primary-text">Ava Miller</span></h1>
+                
+                <!-- Updated Subtitle for CS Student -->
+                <p class="hero-subtitle">
+                    I am a passionate Computer Science student and aspiring full-stack developer, specializing in clean code architecture and responsive web design. I enjoy turning complex problems into elegant, efficient digital solutions.
+                </p>
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <p>
+                        <span style="font-weight: 600;">Contact:</span> 
+                        <a href="tel:+1-555-123-4567"> (555) 123-4567 </a> 
+                        |
+                        <a href="mailto:ava.miller@example.com"> ava.miller@example.com </a>
+                    </p>
+                </div>
+
+                <a href="#skills" class="cta-button">
+                    Explore My Skills &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Skills Section -->
+        <section id="skills" class="skills-section">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="skills-grid">
+                <!-- Skill Card 1: Frontend -->
+                <div class="skill-card">
+                    <h3 class="skill-title">Frontend Development</h3>
+                    <p class="skill-description">Crafting responsive and dynamic user interfaces.</p>
+                    <ul class="skill-list">
+                        <li>React, Vue.js</li>
+                        <li>HTML5, CSS3, Standard CSS</li>
+                        <li>JavaScript (ES6+)</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 2: Backend -->
+                <div class="skill-card">
+                    <h3 class="skill-title">Backend Systems</h3>
+                    <p class="skill-description">Building robust and scalable server-side applications.</p>
+                    <ul class="skill-list">
+                        <li>Node.js, Express</li>
+                        <li>Python, Django</li>
+                        <li>RESTful API Design</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 3: Design & Tools -->
+                <div class="skill-card">
+                    <h3 class="skill-title">Design & Tools</h3>
+                    <p class="skill-description">Proficiency in design principles and essential tools.</p>
+                    <ul class="skill-list">
+                        <li>Figma, Sketch</li>
+                        <li>Database (PostgreSQL, MongoDB)</li>
+                        <li>Git & GitHub, CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Ava Miller. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
